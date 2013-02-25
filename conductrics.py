@@ -2,19 +2,18 @@ import httplib
 import json
 from urlparse import urlparse
 
-class Conductrics:
-	baseUrl = "http://api.conductrics.com"
-	apiKey = None
-	ownerCode = None
+baseUrl = "http://api.conductrics.com"
+apiKey = None
+ownerCode = None
 
 def _request(session, *parts, **args):
-	u = '/'.join(str(x) for x in (Conductrics.baseUrl, Conductrics.ownerCode) + parts)
+	u = '/'.join(str(x) for x in (baseUrl, ownerCode) + parts)
 	if len(args):
 		u += "?" + "&".join("%s=%s"%item for item in args.items())
 	u = urlparse(u)
 	h = httplib.HTTPConnection(u.netloc, timeout=2)
 	h.request("GET", u.path + "?" + u.query, headers = {
-		"x-mpath-apikey": Conductrics.apiKey,
+		"x-mpath-apikey": apiKey,
 		"x-mpath-session": session
 	})
 	return json.loads(h.getresponse().read())
@@ -35,8 +34,8 @@ class Agent:
 
 if __name__ == "__main__":
 	import uuid
-	Conductrics.apiKey = "api-DfEfOmMFMXJCVAJFwRwXvgLk"
-	Conductrics.ownerCode = "owner_EQNeYdvBb"
+	apiKey = "api-DfEfOmMFMXJCVAJFwRwXvgLk"
+	ownerCode = "owner_EQNeYdvBb"
 
 	a = Agent("python-agent")
 	
