@@ -14,7 +14,7 @@ Code
 
 Set your credentials (they are in your signup email).
 		
-		import conductrics
+    import conductrics
 
     conductrics.apiKey = "...";
     conductrics.ownerCode = "...";
@@ -32,6 +32,6 @@ Make a choice between any number/type of things.
 
 Send a reward when a session reaches one of your application's goals.
 
-    sortAgent.reward(sessionId);
+    sortAgent.reward(sessionId, value=11.99);
 
 The Agent will learn over time which decisions maximize the reward.
