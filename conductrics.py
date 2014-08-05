@@ -32,6 +32,9 @@ class Agent:
 	def reward(self, session, goalCode="goal-1", value=1.0):
 		return _request(session, self.name, "goal", goalCode, reward=value)
 
+        def expire(self, session):
+            return _request(session, self.name, "expire")
+
 if __name__ == "__main__":
 	import uuid
 	apiKey = "api-DfEfOmMFMXJCVAJFwRwXvgLk"
