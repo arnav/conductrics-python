@@ -22,9 +22,9 @@ class Agent:
 	def __init__(self, name):
 		self.name = name
 	
-	def decide(self, session, *choices):
+	def decide(self, session, *choices, **opts):
 		try:
-			decision = _request(session, self.name, "decision", len(choices))
+			decision = _request(session, self.name, "decision", len(choices), **opts)
 			return choices[int(decision['decision'])]
 		except:
 			return choices[0]
@@ -37,15 +37,15 @@ class Agent:
 
 if __name__ == "__main__":
 	import uuid
-	apiKey = "api-DfEfOmMFMXJCVAJFwRwXvgLk"
-	ownerCode = "owner_EQNeYdvBb"
+	apiKey = "api-nQyALpnyPsZHQrVbvtOhZpYz"
+	ownerCode = "owner_sxvgyHUlj"
 
-	a = Agent("python-agent")
+	a = Agent("python-test-features")
 	
 	sessionId = str(uuid.uuid4())
-	print( a.decide(sessionId, "a", "b") )
-	print( a.reward(sessionId, value=1.2) )
+	print( a.decide(sessionId, "a", "b", features="ugly") )
+	print( a.reward(sessionId, value=.8) )
 
 	sessionId = str(uuid.uuid4())
-	print( a.decide(sessionId, "a", "b") )
-	print( a.reward(sessionId) )
+	print( a.decide(sessionId, "a", "b", features="handsome") )
+	print( a.reward(sessionId, value=1.2) )
